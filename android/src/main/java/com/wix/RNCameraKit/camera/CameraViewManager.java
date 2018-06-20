@@ -86,17 +86,7 @@ public class CameraViewManager extends SimpleViewManager<CameraView> {
         createOrientationListener();
     }
 
-    private static void createOrientationListener() {
-        if (orientationListener != null) return;
-        orientationListener = new OrientationEventListener(reactContext, SensorManager.SENSOR_DELAY_NORMAL) {
-            @Override
-            public void onOrientationChanged(@IntRange(from = -1, to = 359) int angle) {
-                if (angle == OrientationEventListener.ORIENTATION_UNKNOWN) return;
-                setCameraRotation(359 - angle, false);
-            }
-        };
-        orientationListener.enable();
-    }
+    private static void createOrientationListener() {}
 
     static boolean setFlashMode(String mode) {
         if (camera == null) {

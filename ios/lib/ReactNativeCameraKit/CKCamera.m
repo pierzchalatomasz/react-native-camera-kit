@@ -35,7 +35,8 @@ typedef NS_ENUM( NSInteger, CKSetupResult ) {
 RCT_ENUM_CONVERTER(CKCameraFlashMode, (@{
                                          @"auto": @(AVCaptureFlashModeAuto),
                                          @"on": @(AVCaptureFlashModeOn),
-                                         @"off": @(AVCaptureFlashModeOff)
+                                         @"off": @(AVCaptureFlashModeOff),
+                                         @"torch": @(AVCaptureTorchModeOn)
                                          }), AVCaptureFlashModeAuto, integerValue)
 
 @end
@@ -478,7 +479,8 @@ RCT_ENUM_CONVERTER(CKCameraZoomMode, (@{
     if ( device.hasFlash && [device isFlashModeSupported:flashMode] ) {
         NSError *error = nil;
         if ( [device lockForConfiguration:&error] ) {
-            device.flashMode = flashMode;
+            // device.flashMode = flashMode;
+            device.torchMode = flashMode;
             [device unlockForConfiguration];
         }
         else {
